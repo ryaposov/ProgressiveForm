@@ -1,3 +1,79 @@
+# Task
+
+Implement a page with a **progressive form**, where each step shows when you have completed the previous one. In other words, we're **not** looking for previous/next buttons or a wizard, but the **next step should appear automatically**.
+
+## Steps
+
+1. Two checkboxes with labels `A1` and `A2`. Both are unchecked by default. Next step is available after at least one of them is checked.
+1. Two toggle buttons with labels `B1` and `B2`. One button untoggles another (same as radio buttons behavior). Both are inactive by default. Next step is available when any option has been chosen.
+1. A username text field with button `Confirm`. When user types it will async validate using the API's `validate` function. When field is valid the user go to next by pressing the `Confirm` button.
+1. Selectbox with `C1`, `C2`, `C3` options. It is empty by default. Next step is available when any option has been chosen.
+1. Submit button. Should send data to the server.
+
+If a form submit fails then a user must be informed by an error message. It doesn't matter how the message appears but the redux store should be able to manage it.
+
+## Desired result
+
+* A single page form with steps as specified.
+* After meeting a form field requirement, the next item should present. Old items should stay in screen and editable.
+* I should be able to submit the form if all fields are filled.
+
+## Form payload specification
+
+JSON with `a` (checked values), `b` (active button value), `username` (text field value) and `c` (selectbox's value) fields.
+
+Example:
+```javascript
+{
+  a: ["A1"],
+  b: "B1",
+  username: "abcdefxxxx",
+  c: "C1"
+}
+```
+
+## API
+
+Use `api.js` from this gist.
+
+## Requirements
+
+1. Use any starting boilerplate to setup your project. (e.g.: [create-react-app](https://github.com/facebookincubator/create-react-app#quick-overview)).
+1. Install Redux and use the Redux store to manage the state.
+1. Use any library you need.
+1. Single page is enough. No need to use routers or any other pages.
+1. If you want to use inline styles do it in a nice way. :wink:
+1. Use best practices for React/Redux/Frontend. We will look at how you apply them.
+1. Use software engineering principles to write your code. We will ask about them.
+1. Well structured and readable code matters. Can other developers easily read your code and extend it?
+1. Keep a healthy commit history.
+1. Have at least 20% test coverage. Test at least one react component and one Redux functionality (could be async action, reducer, etc). Don't worry about high coverage, we just want to see if you know how to test.
+1. Good UX practices and attention to details :ok_hand:
+1. Functional programming is a plus :wink:
+
+
+## Run project
+
+Next steps are expected to start your project:
+
+```
+yarn install
+yarn build
+yarn start
+```
+
+_Tip_: as static server tool you can use [serve](https://github.com/zeit/serve).
+
+## Codestyle
+
+We value a clean code style. It would be nice if you will follow something like Airbnb's [JavaScript Style Guide](https://github.com/airbnb/javascript). :sunglasses:
+
+:boom: **GOOD LUCK!** :rocket:
+
+
+
+# Create React App README
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -300,7 +376,7 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 
 Start your app by running `npm start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
-The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine. 
+The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
 
 ## Formatting Code Automatically
 
@@ -1675,7 +1751,7 @@ Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debu
       "name": "Debug CRA Tests",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",      
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
       "args": [
         "test",
         "--runInBand",
@@ -1989,7 +2065,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
@@ -2429,7 +2505,7 @@ To resolve this:
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
   * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
-2. Fork the package and publish a corrected version yourself. 
+2. Fork the package and publish a corrected version yourself.
 
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
