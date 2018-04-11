@@ -3,28 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "prop-types": "^15.6.1",
+    "react": "16",
+    "react-dom": "16",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve ./build",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "prop-types": "^15.6.1",
+    "jest": "20.0.4",
+    "react-test-renderer": "^16.3.1",
     "redux-devtools": "^3.4.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "serve": "^6.5.4"
   }
 }

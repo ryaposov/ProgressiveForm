@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { UPDATE_FIELD, SUBMIT_FORM } from './actions';
 
-const initialFormState = {
+export const initialFormState = {
   a: [],
   b: '',
   username: '',

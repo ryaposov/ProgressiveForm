@@ -3,13 +3,6 @@ import * as api from '../api';
 export const UPDATE_FIELD = 'UPDATE_FIELD';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
 
-export function updateFieldCall(field) {
-  return {
-    type: UPDATE_FIELD,
-    field,
-  };
-}
-
 export function submitFormCall(response) {
   return {
     type: SUBMIT_FORM,
@@ -17,8 +10,15 @@ export function submitFormCall(response) {
   };
 }
 
+// export function updateField(field) {
+//   return dispatch => dispatch(updateFieldCall(field));
+// }
+
 export function updateField(field) {
-  return dispatch => dispatch(updateFieldCall(field));
+  return {
+    type: UPDATE_FIELD,
+    field,
+  };
 }
 
 export function submitForm(data) {

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateField, submitForm } from '../store/actions';
 
-import StepWrapper from './StepWrapper';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -30,17 +29,19 @@ const Steps = [
 
 class Form extends React.Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    updateField: PropTypes.func.isRequired,
     form: PropTypes.shape({
       a: PropTypes.array,
       b: PropTypes.string,
       username: PropTypes.string,
+      confirmed: PropTypes.int,
       c: PropTypes.string,
     }).isRequired,
     submit: PropTypes.shape({
       error: PropTypes.boolean,
       response: PropTypes.object,
     }).isRequired,
+    submitForm: PropTypes.func.isRequired,
   };
 
   // Main function to update
@@ -72,12 +73,12 @@ class Form extends React.Component {
       default:
     }
 
-    this.props.dispatch(updateField(payload));
+    this.props.updateField(payload);
   }
 
   // Call API on form submit
   formSubmit = (e) => {
-    this.props.dispatch(submitForm(this.props.form));
+    this.props.submitForm(this.props.form);
     e.preventDefault();
   }
 
@@ -87,16 +88,18 @@ class Form extends React.Component {
       this.stepData(0).length, // At least one item in array needed
       this.stepData(1).length, // Selected button name as string
       this.stepData(2).trim().length && this.props.form.confirmed,
-      // Username shouldn't be empty and btn clicked
+      // Username shouldn't be empty
       // Confirm should be clicked
-      this.stepData(3).length, // Select should have value
+      this.stepData(3).length, // Select should have a value
     ];
+
+    // console.log(rulesSet.slice(start, end))
 
     return rulesSet.slice(start, end).every(rule => (rule));
   }
 
   // Style for each form step
-  stepStyle = i => ({ display: this.rulesValid(0, i) ? 'block' : 'none' })
+  stepStyle = i => (this.rulesValid(0, i) ? null : { display: 'none' })
 
   // Step data
   stepData = i => (this.props.form[Object.keys(this.props.form)[i]])
@@ -105,14 +108,12 @@ class Form extends React.Component {
     return (
       <form name="mainForm">
         {Steps.map((Step, i) => (
-          <StepWrapper key={Step.key} style={this.stepStyle(i)}>
+          <fieldset key={Step.key} style={this.stepStyle(i)}>
             <Step.Component data={this.stepData(i)} onUpdate={this.onUpdate} />
-          </StepWrapper>
+          </fieldset>
         ))}
-        <button disabled={!this.rulesValid()} onClick={this.formSubmit}>Submit</button>
-        {this.props.submit.error &&
-          <p>{this.props.submit.response.msg}</p>
-        }
+        <button disabled={!this.rulesValid(0, 4)} onClick={this.formSubmit}>Submit</button>
+        {this.props.submit.error && <p>{this.props.submit.response.msg}</p>}
       </form>
     );
   }
@@ -125,4 +126,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Form);
+export default connect(mapStateToProps, { updateField, submitForm })(Form);
