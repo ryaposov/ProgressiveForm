@@ -93,8 +93,6 @@ class Form extends React.Component {
       this.stepData(3).length, // Select should have a value
     ];
 
-    // console.log(rulesSet.slice(start, end))
-
     return rulesSet.slice(start, end).every(rule => (rule));
   }
 
